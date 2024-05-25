@@ -8,4 +8,4 @@
         state: present
         name:
           - rsyslog
-		  - parted
+          - parted
