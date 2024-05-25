@@ -10,7 +10,6 @@
       ansible.builtin.apt:
         state: present
         name: 
-          - update-notifier-common
           - unattended-upgrades
           - apt-listchanges
 
