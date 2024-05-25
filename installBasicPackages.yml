@@ -16,14 +16,14 @@
         name:
           - rsyslog
           - nano
-          #- parted
-          #- ncdu 
-          #- dfrs 
-          #- net-tools 
-          #- wget 
-          #- curl 
-          #- htop 
-          #- ncdu 
-          #- fd-find 
-          #- duf 
-          #- exa
+          - parted
+          - ncdu 
+          - dfrs 
+          - net-tools 
+          - wget 
+          - curl 
+          - htop 
+          - ncdu 
+          - fd-find 
+          - duf 
+          - exa
