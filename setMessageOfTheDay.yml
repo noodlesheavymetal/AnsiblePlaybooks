@@ -5,8 +5,8 @@
   become_method: sudo
   
   tasks:
-  - name: "copy motd file to /etc/motd"
-      template:
+    - name: "copy motd file to /etc/motd"
+      copy:
         src: motd.j2
         dest: /etc/motd
         owner: root
