@@ -1,11 +1,30 @@
 ---
-- hosts: all
+- name: Install Basic Packages
+  hosts: all
+  become: true
+  become_method: sudo
+  
   tasks:
-    - name: install packages
-      become: true
-      become_method: sudo
-      ansible.builtin.apt:
+    - name: Upgrade package cache
+      apt:
+        update_cache: yes
+        
+    - name: Install packages
+      apt:
+        upgrade: safe
+        autoclean: yes
         state: present
         name:
           - rsyslog
+          - nano
           - parted
+          - ncdu 
+          - dfrs 
+          - net-tools 
+          - wget 
+          - curl 
+          - htop 
+          - ncdu 
+          - fd-find 
+          - duf 
+          - exa
