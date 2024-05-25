@@ -1,0 +1,14 @@
+---
+- name: Set Message of the Day
+  hosts: all
+  become: true
+  become_method: sudo
+  
+  tasks:
+  - name: "copy motd file to /etc/motd"
+      template:
+        src: motd.j2
+        dest: /etc/motd
+        owner: root
+        group: root
+        mode: '644'
