@@ -1,0 +1,53 @@
+- name: Configure Daily Security Updates (Debian)
+  hosts: all
+  become: true
+  become_method: sudo 
+  gather_facts: false
+  
+  tasks:
+
+    - name: Install apt prerequisites for automated reboots
+      ansible.builtin.apt:
+        state: present
+        name: 
+          - update-notifier-common
+          - unattended-upgrades
+          - apt-listchanges
+
+
+    - name: Create unattended upgrades configuration file
+      ansible.builtin.blockinfile:
+        dest: /etc/apt/apt.conf.d/20auto-upgrades
+        block: |
+          APT::Periodic::Update-Package-Lists "1";
+          APT::Periodic::Unattended-Upgrade "1";
+        marker: "// {mark} ANSIBLE MANAGED BLOCK - unattended_upgrades settings"
+        create: true
+        mode: "0644"
+        owner: root
+        group: root
+      register: unattended_upgrades_config_set
+
+
+
+    - name: Enable automated reboots
+      ansible.builtin.blockinfile:
+        dest: /etc/apt/apt.conf.d/50unattended-upgrades
+        block: |
+          Unattended-Upgrade::Automatic-Reboot "true";
+          Unattended-Upgrade::Automatic-Reboot-Time "02:00";
+        marker: "// {mark} ANSIBLE MANAGED BLOCK - unattended_upgrades settings"
+        create: true
+        mode: "0644"
+        owner: root
+        group: root
+      register: unattended_upgrades_settings_set
+
+
+    - name: Dpkg reconfigure
+      ansible.builtin.command:
+        cmd: dpkg-reconfigure -f noninteractive unattended-upgrades
+      register: dpkg_reconfigure_unattended_upgrades
+      when:
+        - unattended_upgrades_config_set.changed or
+          unattended_upgrades_settings_set.changed
