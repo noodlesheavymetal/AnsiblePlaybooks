@@ -2,7 +2,6 @@
 - hosts: all
   tasks:
     - name: install packages
-      become: true
       ansible.builtin.apt:
         state: present
         name:
