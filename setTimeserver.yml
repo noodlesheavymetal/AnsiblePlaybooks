@@ -1,0 +1,22 @@
+- name: Set Timeserver (Debian)
+  hosts: all
+  become: true
+  become_method: sudo 
+  gather_facts: false
+  
+  tasks:
+  
+    - name: Copy config-file
+      template:
+        src: setTimeserver_tmpl_timesyncd.conf
+        dest: /etc/systemd/timesyncd.conf
+        owner: root
+        group: root
+        mode: '644'
+      register: timserverconfig_set
+
+    - name: Restart timesync-service
+      ansible.builtin.command:
+        cmd: systemctl restart systemd-timesyncd
+      when:
+        - timserverconfig_set.changed
