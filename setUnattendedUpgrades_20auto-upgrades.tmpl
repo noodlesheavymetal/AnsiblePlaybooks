@@ -1,0 +1,21 @@
+// ANSIBLE Managed File!
+
+
+Unattended-Upgrade::Origins-Pattern {
+// Bei Debian 10:
+//  "origin=Debian,codename=${distro_codename},label=Debian-Security";
+
+// Ab Debian 11:
+  "origin=Debian,codename=${distro_codename},label=Debian-Security";
+  "origin=Debian,codename=${distro_codename}-security,label=Debian-Security";
+};
+
+// Adresse für Mail-Reports:
+Unattended-Upgrade::Mail "daniel.weyrauch@dawicom.de";
+
+// Mails nur senden, wenn eine Änderung durchgeführt wurde:
+Unattended-Upgrade::MailReport "on-change";
+
+// Wenn ein Reboot erforderlich ist, diesen durchführen, jedoch um 2:00 Nachts:
+Unattended-Upgrade::Automatic-Reboot "true";
+Unattended-Upgrade::Automatic-Reboot-Time "02:00";

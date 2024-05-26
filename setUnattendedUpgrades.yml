@@ -15,17 +15,23 @@
 
 
 
+    - name: "copy config file 1"
+      template:
+        src: setUnattendedUpgrades_50unattended-upgrades.tmpl
+        dest: /etc/apt/apt.conf.d/50unattended-upgrades
+        owner: root
+        group: root
+        mode: '644'
+      register: unattended_upgrades_config_set
 
-    - name: Ensure "fav=lemonade is in section "[drinks]" in specified file
-      ini_file: 
-        path: /etc/apt/apt.conf.d/50unattended-upgrades
-        section:
-        attributes:
-        option: "Unattended-Upgrade::Automatic-Reboot"
-        value: test
-        mode: '0600'
-        backup: yes
-
+    - name: "copy config file 2"
+      template:
+        src: setUnattendedUpgrades_20auto-upgrades.tmpl
+        dest: /etc/apt/apt.conf.d/20auto-upgrades
+        owner: root
+        group: root
+        mode: '644'
+      register: unattended_upgrades_settings_set
 
 
 
@@ -67,10 +73,10 @@
 
 
  
-#   - name: Dpkg reconfigure
-#     ansible.builtin.command:
-#       cmd: dpkg-reconfigure -f noninteractive unattended-upgrades
-#     register: dpkg_reconfigure_unattended_upgrades
-#      when:
-#        - unattended_upgrades_config_set.changed or
-#          unattended_upgrades_settings_set.changed
+   - name: Dpkg reconfigure
+     ansible.builtin.command:
+       cmd: dpkg-reconfigure -f noninteractive unattended-upgrades
+     register: dpkg_reconfigure_unattended_upgrades
+      when:
+        - unattended_upgrades_config_set.changed or
+          unattended_upgrades_settings_set.changed
