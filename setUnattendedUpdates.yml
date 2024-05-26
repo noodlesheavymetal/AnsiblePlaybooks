@@ -20,6 +20,7 @@
       ini_file: 
         path: /etc/apt/apt.conf.d/50unattended-upgrades
         section:
+        attributes:
         option: "Unattended-Upgrade::Automatic-Reboot"
         value: test
         mode: '0600'
