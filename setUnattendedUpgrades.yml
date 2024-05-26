@@ -13,23 +13,23 @@
           - unattended-upgrades
           - apt-listchanges
 
-    - name: "copy config file 1"
-      template:
-        src: setUnattendedUpgrades_50unattended-upgrades.tmpl
-        dest: /etc/apt/apt.conf.d/50unattended-upgrades
-        owner: root
-        group: root
-        mode: '644'
-      register: unattended_upgrades_config_set
+ #   - name: "copy config file 1"
+ #     template:
+ #       src: setUnattendedUpgrades_50unattended-upgrades.tmpl
+ #       dest: /etc/apt/apt.conf.d/50unattended-upgrades
+ #       owner: root
+ #       group: root
+ #       mode: '644'
+ #     register: unattended_upgrades_config_set
 
-    - name: "copy config file 2"
-      template:
-        src: setUnattendedUpgrades_20auto-upgrades.tmpl
-        dest: /etc/apt/apt.conf.d/20auto-upgrades
-        owner: root
-        group: root
-        mode: '644'
-      register: unattended_upgrades_settings_set
+ #   - name: "copy config file 2"
+ #     template:
+ #       src: setUnattendedUpgrades_20auto-upgrades.tmpl
+ #       dest: /etc/apt/apt.conf.d/20auto-upgrades
+ #       owner: root
+ #       group: root
+ #       mode: '644'
+ #     register: unattended_upgrades_settings_set
 
     - name: Dpkg reconfigure
       ansible.builtin.command:
