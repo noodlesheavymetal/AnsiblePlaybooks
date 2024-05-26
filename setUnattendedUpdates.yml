@@ -21,7 +21,7 @@
       path: /etc/apt/apt.conf.d
 #    section: drinks
       option: Unattended-Upgrade::Automatic-Reboot 
-    value: "true";
+    value: ""true";"
     mode: '0600'
     backup: yes
 
