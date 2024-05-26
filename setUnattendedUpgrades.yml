@@ -2,11 +2,11 @@
   hosts: all
   become: true
   become_method: sudo 
-  gather_facts: false
+#  gather_facts: false
   
   tasks:
-
-    - name: "Install apt prerequisites for automated reboots"
+  
+    - name: Install apt prerequisites for automated reboots
       ansible.builtin.apt:
         state: present
         name: 
