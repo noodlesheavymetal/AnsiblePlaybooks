@@ -6,12 +6,12 @@
   
   tasks:
   
-    - name: Install apt prerequisites for automated reboots
-      ansible.builtin.apt:
-        state: present
-        name: 
-          - unattended-upgrades
-          - apt-listchanges
+#    - name: Install apt prerequisites for automated reboots
+#      ansible.builtin.apt:
+#        state: present
+#        name: 
+#          - unattended-upgrades
+#          - apt-listchanges
 
  #   - name: "copy config file 1"
  #     template:
