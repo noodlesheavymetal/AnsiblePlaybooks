@@ -6,12 +6,12 @@
   
   tasks:
 
-    - name: Install apt prerequisites for automated reboots
-      ansible.builtin.apt:
-        state: present
-        name: 
-          - unattended-upgrades
-          - apt-listchanges
+#    - name: Install apt prerequisites for automated reboots
+#      ansible.builtin.apt:
+#        state: present
+#        name: 
+#          - unattended-upgrades
+#          - apt-listchanges
 
 
 
@@ -65,10 +65,11 @@
 #      register: unattended_upgrades_settings_set
 
 
-    - name: Dpkg reconfigure
-      ansible.builtin.command:
-        cmd: dpkg-reconfigure -f noninteractive unattended-upgrades
-      register: dpkg_reconfigure_unattended_upgrades
-      when:
-        - unattended_upgrades_config_set.changed or
-          unattended_upgrades_settings_set.changed
+ 
+#   - name: Dpkg reconfigure
+#     ansible.builtin.command:
+#       cmd: dpkg-reconfigure -f noninteractive unattended-upgrades
+#     register: dpkg_reconfigure_unattended_upgrades
+#      when:
+#        - unattended_upgrades_config_set.changed or
+#          unattended_upgrades_settings_set.changed
