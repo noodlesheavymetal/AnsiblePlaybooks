@@ -31,10 +31,10 @@
         mode: '644'
       register: unattended_upgrades_settings_set
 
-   - name: "Dpkg reconfigure"
-     ansible.builtin.command:
-       cmd: dpkg-reconfigure -f noninteractive unattended-upgrades
-     register: dpkg_reconfigure_unattended_upgrades
+    - name: Dpkg reconfigure
+      ansible.builtin.command:
+        cmd: dpkg-reconfigure -f noninteractive unattended-upgrades
+      register: dpkg_reconfigure_unattended_upgrades
       when:
         - unattended_upgrades_config_set.changed or
           unattended_upgrades_settings_set.changed
