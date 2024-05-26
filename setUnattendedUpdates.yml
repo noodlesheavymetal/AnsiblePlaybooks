@@ -19,7 +19,7 @@
     - name: Ensure "fav=lemonade is in section "[drinks]" in specified file
       ini_file: 
         path: /etc/apt/apt.conf.d/50unattended-upgrades
-#       section: drinks
+        section:
         option: Unattended-Upgrade::Automatic-Reboot 
         value: test
         mode: '0600'
